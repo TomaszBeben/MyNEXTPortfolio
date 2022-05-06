@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { mainPageData } from '../temporaryDataToFetch/mainPageData'
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -10,52 +12,29 @@ const Home: NextPage = () => {
         <title>TB</title>
       </Head>
 
+      <header className={styles.header}>
+        <button>{'{login}'}</button>
+      </header>
+
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome
         </h1>
 
         <p className={styles.description}>
-          To My Portfolio
+          To My NEXT Portfolio
         </p>
 
         <div className={styles.grid}>
-          <a href="/app" className={styles.card}>
-            <h2>Share Board &rarr;</h2>
-            <p>Share your info with your friends</p>
-          </a>
 
-          <a href="https://showyourself-tb.web.app" className={styles.card}>
-            <h2>Show Yourself &rarr;</h2>
-            <p>Create Your ultimate CV</p>
-          </a>
-
-          <a
-            href="https://github.com/TomaszBeben"
-            className={styles.card}
-          >
-            <h2>Github &rarr;</h2>
-            <p>Check my Github</p>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/tomasz-bęben-1944021a2/"
-            className={styles.card}
-          >
-            <h2>LinkedIn &rarr;</h2>
-            <p>
-              Reach me out if you want
-            </p>
-          </a>
-          <a
-            href="https://tbebenportfolio.web.app/#/"
-            className={styles.card}
-          >
-            <h2>Portfolio &rarr;</h2>
-            <p>
-              my first deployed app
-            </p>
-          </a>
+          {mainPageData.map((elem) => {
+            return (
+              <a key={elem.id} href={elem.href} className={styles.card}>
+                <h2>{elem.name} &rarr;</h2>
+                <p>{elem.description}</p>
+              </a>
+            )
+          })}
         </div>
       </main>
 
@@ -66,7 +45,7 @@ const Home: NextPage = () => {
             <Image src="/logo.svg" alt="Logo" width={18} height={18} />
           </span>
         </a>
-          
+
       </footer>
     </div>
   )
