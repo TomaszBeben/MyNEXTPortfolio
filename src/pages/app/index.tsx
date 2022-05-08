@@ -8,8 +8,7 @@ import AuthButton from './_authButton'
 
 const homepage: NextPage = () => {
 
-  const router: NextRouter = useRouter()//TEST
-  console.log(router);//TEST
+  // const router: NextRouter = useRouter()//TEST
   const [user, setUser] = useState < string > ('{user}')
 
   return (
