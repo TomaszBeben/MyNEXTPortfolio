@@ -10,6 +10,8 @@ const homepage: NextPage = () => {
 
   // const router: NextRouter = useRouter()//TEST
   const [user, setUser] = useState < string > ('{user}')
+  const {data: session} = useSession()
+  console.log(session);
 
   return (
     <div className={styles.container}>
