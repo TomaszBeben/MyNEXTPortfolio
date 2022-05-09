@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import type { NextPage, NextRouter } from 'next'
 import Image from 'next/image'
@@ -9,9 +9,12 @@ import AuthButton from './_authButton'
 const homepage: NextPage = () => {
 
   // const router: NextRouter = useRouter()//TEST
-  const [user, setUser] = useState < string > ('{user}')
-  const {data: session} = useSession()
-  console.log(session);
+  const [user, setUser] = useState()
+  const data = useSession()
+
+  console.log(data.data?.user?.name)
+  useEffect(()=> {
+  })
 
   return (
     <div className={styles.container}>
