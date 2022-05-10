@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 import { mainPageData } from '../temporaryDataToFetch/mainPageData'
 
@@ -30,10 +31,12 @@ const Home: NextPage = () => {
 
           {mainPageData.map((elem) => {
             return (
-              <a key={elem.id} href={elem.href} className={styles.card}>
-                <h2>{elem.name} &rarr;</h2>
-                <p>{elem.description}</p>
-              </a>
+              <Link key={elem.id} href={elem.href} >
+                <a className={styles.card}>
+                  <h2>{elem.name} &rarr;</h2>
+                  <p>{elem.description}</p>
+                </a>
+              </Link>
             )
           })}
         </div>

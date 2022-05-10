@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
 import AuthButton from './_authButton'
+import Link from 'next/link'
 
 const homepage: NextPage = () => {
 
@@ -13,14 +14,14 @@ const homepage: NextPage = () => {
   const data = useSession()
 
   console.log(data.data?.user?.name)
-  useEffect(()=> {
+  useEffect(() => {
   })
 
   return (
     <div className={styles.container}>
 
       <header className={styles.header}>
-        <AuthButton/>
+        <AuthButton />
       </header>
 
       <main className={styles.main}>
@@ -29,19 +30,25 @@ const homepage: NextPage = () => {
         </h1>
 
         <div className={styles.grid}>
-          <a href="/" className={styles.card}>
-            <h2>BACK</h2>
-            <p></p>
-          </a>
+          <Link href="/">
+            <a className={styles.card}>
+              <h2>BACK</h2>
+              <p></p>
+            </a>
+          </Link>
 
-          <a href="" className={styles.card}>
-            <h2></h2>
-            <p></p>
-          </a>
-          <a href="" className={styles.card}>
-            <h2></h2>
-            <p></p>
-          </a>
+          <Link href="/">
+            <a className={styles.card}>
+              <h2></h2>
+              <p></p>
+            </a>
+          </Link>
+          <Link href="/">
+            <a className={styles.card}>
+              <h2></h2>
+              <p></p>
+            </a>
+          </Link>
         </div>
       </main>
 
