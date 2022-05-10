@@ -13,9 +13,7 @@ const homepage: NextPage = () => {
   const [user, setUser] = useState()
   const data = useSession()
 
-  console.log(data.data?.user?.name)
-  useEffect(() => {
-  })
+  console.log(data)
 
   return (
     <div className={styles.container}>
