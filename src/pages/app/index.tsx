@@ -1,30 +1,20 @@
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import type { NextPage, NextRouter } from 'next'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
-import { useSession, signIn, signOut } from "next-auth/react"
-import AuthButton from './_authButton'
 import Link from 'next/link'
 
 const homepage: NextPage = () => {
-
-  // const router: NextRouter = useRouter()//TEST
-  const [user, setUser] = useState()
-  const data = useSession()
-
-  console.log(data)
-
   return (
     <div className={styles.container}>
 
       <header className={styles.header}>
-        <AuthButton />
       </header>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome {user}
+          Welcome<br/>
+          tomek
         </h1>
 
         <div className={styles.grid}>

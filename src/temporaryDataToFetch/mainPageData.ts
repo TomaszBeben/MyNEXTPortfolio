@@ -3,7 +3,7 @@ export const mainPageData = [
         id:0,
         href:"/app",
         name: 'Share Board',
-        description: 'Share your info with your friends'
+        description: 'Log in and share your info with your friends'
     },
     {
         id:1,
