@@ -12,7 +12,8 @@
     align-items: center;
 }
 
-.header {
+
+/* .header {
     display: flex;
     flex: 1;
     padding: 2rem 0;
@@ -20,9 +21,10 @@
     justify-content: flex-end;
     align-items: center;
     height: 2rem;
-}
+} */
 
-.footer {
+
+/* .footer {
     display: flex;
     flex: 1;
     padding: 2rem 0;
@@ -37,7 +39,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-}
+} */
 
 .title a {
     color: #0070f3;
