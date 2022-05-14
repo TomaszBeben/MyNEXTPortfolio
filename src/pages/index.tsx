@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 
@@ -27,7 +27,9 @@ const Home: NextPage = () => {
       <Header/>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome<br />
+          Welcome
+        </h1>
+        <h1 className={styles.title}>
           {user}
         </h1>
 
