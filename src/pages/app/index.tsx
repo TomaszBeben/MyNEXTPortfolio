@@ -1,7 +1,9 @@
 import { useSession, getSession } from "next-auth/react"
 import AppHomePage from "../../components/app/AppHomePage"
+import { useRouter } from "next/router"
 
-export default function ProtectPageFunction() {
+const ProtectPageFunction = () => {
+  const router = useRouter()
   const { data: session } = useSession()
 
   if (typeof window === "undefined") return null
@@ -13,13 +15,22 @@ export default function ProtectPageFunction() {
       </>
     )
   }
-  return <p>Access Denied</p>
+  return (
+    <>
+    
+    </>
+  )
 }
 
 export const getServerSideProps = async(context) => {
+
+  console.log(context);
+
   return {
     props: {
       session: await getSession(context),
     },
   }
 }
+
+export default ProtectPageFunction
