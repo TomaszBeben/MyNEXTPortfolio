@@ -3,9 +3,7 @@ import AppHomePage from "../../components/app/AppHomePage"
 import { useRouter } from "next/router"
 
 const ProtectPageFunction = () => {
-  const router = useRouter()
   const { data: session } = useSession()
-
   if (typeof window === "undefined") return null
 
   if (session) {
@@ -15,21 +13,22 @@ const ProtectPageFunction = () => {
       </>
     )
   }
-  return (
-    <>
-    LOG IN !!!!!!!!!!!
-    </>
-  )
 }
 
 export const getServerSideProps = async(context) => {
+  const session = await getSession(context)
 
-  console.log(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    }
+  }
 
   return {
-    props: {
-      session: await getSession(context),
-    },
+    props: { session }
   }
 }
 

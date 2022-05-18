@@ -6,12 +6,12 @@ import styles from '../styles/Home.module.scss'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 
-import { mainPageData } from '../temporaryDataToFetch/mainPageData'
 import Footer from '../components/main/footer/footer'
 import Header from '../components/main/header/Header'
+import { UrlObject } from 'url'
 
 
-const Home: NextPage = () => {
+const Home: NextPage = ({mainPageData}) => {
   const [user, setUser] = useState<string>('{user}')
   const { data: session } = useSession<boolean>()
 
@@ -57,3 +57,15 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getServerSideProps() {
+
+  const res = await fetch(process.env.MAIN_PAGE_DATA)
+  const data = await res.json()
+
+  return{
+    props:{
+      mainPageData: data
+    }
+  }
+}

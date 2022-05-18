@@ -27,7 +27,4 @@ export default NextAuth({
   theme: {
     colorScheme: "dark",
   },
-  // pages: {
-  //   signIn: 'api/auth/signin',
-  // }
 })
