@@ -3,7 +3,10 @@ import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import GithubProvider from "next-auth/providers/github"
 import LinkedInProvider from "next-auth/providers/linkedin"
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import clientPromise from '../../../utils/mongoShema'
 export default NextAuth({
+  
   providers: [
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
@@ -25,5 +28,5 @@ export default NextAuth({
   theme: {
     colorScheme: "dark",
   },
-  secret: process.env.SECRET
+  secret: "LlKq6ZtYbr+hTC073mAmAh9/h2HwMfsFo4hrfCx5mLg=",
 })

@@ -1,5 +1,7 @@
 import mongoose from "mongoose"
 
+const MONGO_DB_URL_LOCAL = process.env.MONGO_DB_URL_LOCAL
+
 const connection = {}
 
 const dbConnect = async() => {
@@ -13,8 +15,6 @@ const dbConnect = async() => {
     })
 
     connection.isConnected = db.connections[0].readyState
-    console.log(connection.isConnected);
-    
 }
 
 export default dbConnect
