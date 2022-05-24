@@ -10,7 +10,7 @@ const ProtectPageFunction: NextPage = () => {
   if (session) {
     return (
       <>
-        <AppHomePage/>
+        <AppHomePage user={session.user?.name}/>
       </>
     )
   }

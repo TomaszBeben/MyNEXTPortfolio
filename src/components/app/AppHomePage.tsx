@@ -5,16 +5,18 @@ import Link from 'next/link'
 import Header from '../main/header/Header'
 import Footer from '../main/footer/footer'
 
-const AppHomePage: NextPage = () => {
+const AppHomePage: NextPage = ({ user }) => {
   return (
     <div className={styles.container}>
 
-      <Header/>
+      <Header />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome<br/>
-          tomek
+          Welcome
+        </h1>
+        <h1 className={styles.title}>
+          {user}
         </h1>
 
         <div className={styles.grid}>
@@ -25,9 +27,9 @@ const AppHomePage: NextPage = () => {
             </a>
           </Link>
 
-          <Link href="/">
+          <Link href="app/test">
             <a className={styles.card}>
-              <h2></h2>
+              <h2>TEST</h2>
               <p></p>
             </a>
           </Link>
@@ -40,7 +42,7 @@ const AppHomePage: NextPage = () => {
         </div>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   )
 }

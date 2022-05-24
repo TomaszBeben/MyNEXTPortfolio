@@ -8,12 +8,13 @@ import { useSession } from 'next-auth/react'
 
 import Footer from '../components/main/footer/footer'
 import Header from '../components/main/header/Header'
-import { UrlObject } from 'url'
 
 
 const Home: NextPage = ({mainPageData}) => {
   const [user, setUser] = useState<string>('{user}')
   const { data: session } = useSession<boolean>()
+
+  // console.log(session.user);
 
   useEffect(() => {
     return session !== null ? setUser(session?.user?.name) : setUser('{user}')
@@ -63,8 +64,8 @@ export async function getServerSideProps() {
   const res = await fetch(process.env.MAIN_PAGE_DATA)
   const data = await res.json()
 
-  return{
-    props:{
+  return {
+    props: {
       mainPageData: data
     }
   }
