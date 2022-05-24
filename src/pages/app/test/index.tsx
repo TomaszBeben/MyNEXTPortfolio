@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const test = ({ test }) => {
+  console.log(test);
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -8,6 +9,9 @@ const test = ({ test }) => {
     const req = await fetch('http://localhost:3000/api/users', {
       method: 'POST',
       body: JSON.stringify({name, email}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     const data = await req.json()
     console.log(data);
@@ -17,21 +21,22 @@ const test = ({ test }) => {
     <>
       <input
         type="name"
+        name="name"
         value={name}
         onChange={e => setName(e.target.value)} />
       <input
         type="text"
+        name="email"
         value={email}
         onChange={e => setEmail(e.target.value)} />
       <button onClick={submitReq} >Submit</button>
-      <div>index</div>
       {
         test.map(e => {
           return (
-            <>
-              <h1>{e.name}</h1>
-              <h1>{e.email}</h1>
-            </>
+            <div key={e._id}>
+                <p>name: {e.name}</p>
+                <p>email: {e.email}</p>
+            </div>
           )
         })
       }
