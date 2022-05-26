@@ -33,12 +33,6 @@ const AppHomePage: NextPage = ({ user }) => {
               <p></p>
             </a>
           </Link>
-          <Link href="/">
-            <a className={styles.card}>
-              <h2></h2>
-              <p></p>
-            </a>
-          </Link>
         </div>
       </main>
 
