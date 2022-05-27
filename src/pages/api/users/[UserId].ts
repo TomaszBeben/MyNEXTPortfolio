@@ -8,7 +8,7 @@ export default async function handler(
 ) {
     const {method} = req
     const {UserId} = req.query
-    console.log(UserId);
+    // console.log(UserId);
 
     dbConnect()
 
