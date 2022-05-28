@@ -6,13 +6,23 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    dbConnect()
     const {method} = req
     const {UserId} = req.query
-    // console.log(UserId);
-
-    dbConnect()
 
     switch (method) {
+
+        case 'GET':
+            try {
+                console.log(UserId);
+                const user = await User.find({_id: UserId})
+                res.status(200).json({success: true, data: user})
+            } catch (error) {
+                // console.log(error)
+                res.status(500).json({success: false, error})
+            }
+            break
+
         case 'PUT':
             try {
                 const user = await User.updateOne({_id: UserId}, req.body)

@@ -7,7 +7,6 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const {method} = req
-    const {UserId} = req.query
 
     dbConnect()
 
@@ -24,11 +23,11 @@ export default async function handler(
 
         case "POST":
             try {
-                const exist = await User.find({'name':'Tomasz'})
+                const {email} = req.body
+                const exist = await User.find({email})
                 if(exist.length > 0){
                     console.log('user exist');
                 }else{
-                    console.log('nie');
                     const user = await User.create(req.body)
                 res.status(201).json({success: true, data: user})
                 }
