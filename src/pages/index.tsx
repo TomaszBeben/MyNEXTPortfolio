@@ -6,15 +6,13 @@ import styles from '../styles/Home.module.scss'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 
-import Footer from '../components/main/footer/footer'
+import Footer from '../components/main/footer/Footer'
 import Header from '../components/main/header/Header'
 
 
 const Home: NextPage = ({mainPageData}) => {
   const [user, setUser] = useState<string>('{user}')
   const { data: session } = useSession<boolean>()
-
-  // console.log(session.user);
 
   useEffect(() => {
     return session !== null ? setUser(session?.user?.name) : setUser('{user}')

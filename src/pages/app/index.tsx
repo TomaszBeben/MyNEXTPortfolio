@@ -1,11 +1,14 @@
+import { useState, useEffect } from "react"
 import { useSession, getSession } from "next-auth/react"
 import AppHomePage from "../../components/app/AppHomePage"
-import { useRouter } from "next/router"
 import { NextPage, NextPageContext } from "next"
 
 const ProtectPageFunction: NextPage = () => {
+  const [mounted, setMounted] = useState(false);
   const { data: session } = useSession()
-  if (typeof window === "undefined") return null
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
 
   if (session) {
     return (
