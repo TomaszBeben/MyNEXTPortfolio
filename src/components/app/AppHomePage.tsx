@@ -5,23 +5,19 @@ import styles from '../../styles/Home.module.scss'
 import Link from 'next/link'
 import Header from '../main/header/Header'
 import Footer from '../main/footer/Footer'
+import { submitReq } from '../utils/submitReq'
 
 const AppHomePage: NextPage = ({ user }) => {
+  const [posted, setPosted] = useState<boolean>(false)
   const {data} = useSession()
-  const name = data?.user?.name?.toString()
-  const email = data?.user?.email?.toString()
+  const name: string | undefined = data?.user?.name?.toString()
+  const email: string | undefined = data?.user?.email?.toString()
   useEffect(() => {
-    const submitReq = async () => {
-      const req = await fetch('http://localhost:3000/api/users', {
-        method: 'POST',
-        body: JSON.stringify({ name, email }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+    if(!posted){
+      setPosted(true)
+      submitReq(name, email)
     }
-    submitReq()
-}, [name, email])
+}, [])
   return (
     <div className={styles.container}>
       <Header />
@@ -41,9 +37,9 @@ const AppHomePage: NextPage = ({ user }) => {
             </a>
           </Link>
 
-          <Link href="app/test">
+          <Link href="app/main">
             <a className={styles.card}>
-              <h2>TEST</h2>
+              <h2>MAIN</h2>
               <p></p>
             </a>
           </Link>
@@ -54,14 +50,3 @@ const AppHomePage: NextPage = ({ user }) => {
 }
 
 export default AppHomePage
-
-// export async function getServerSideProps() {
-//   const res = await fetch('http://localhost:3000/api/users')
-//   const data = await res.json()
-
-//   return {
-//     props: {
-//       data: data.data
-//     }
-//   }
-// }
