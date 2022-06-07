@@ -10,20 +10,21 @@ import Footer from '../components/main/footer/Footer'
 import Header from '../components/main/header/Header'
 
 
-const Home: NextPage = ({mainPageData}) => {
-  const [user, setUser] = useState<string>('{user}')
-  const { data: session } = useSession<boolean>()
+const Home: NextPage = ({ mainPageData }) => {
+  const [user, setUser] = useState < string > ('{user}')
+  const { data: session } = useSession < boolean > ()
 
   useEffect(() => {
     return session !== null ? setUser(session?.user?.name) : setUser('{user}')
   }, [session])
+
 
   return (
     <div className={styles.container}>
       <Head>
         <title>TB</title>
       </Head>
-      <Header/>
+      <Header />
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome
@@ -50,7 +51,7 @@ const Home: NextPage = ({mainPageData}) => {
           })}
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

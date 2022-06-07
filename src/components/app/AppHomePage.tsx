@@ -45,6 +45,7 @@ const AppHomePage: NextPage = ({ user }) => {
           </Link>
         </div>
       </main>
+      <Footer/>
     </div>
   )
 }

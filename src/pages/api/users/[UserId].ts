@@ -9,6 +9,8 @@ export default async function handler(
     dbConnect()
     const {method} = req
     const {UserId} = req.query
+    console.log(UserId);
+    
 
     switch (method) {
 
@@ -23,15 +25,15 @@ export default async function handler(
             }
             break
 
-        case 'PUT':
-            try {
-                const user = await User.updateOne({_id: UserId}, req.body)
-                res.status(200).json({success: true, data: user})
-            } catch (error) {
-                console.log(error)
-                res.status(500).json({success: false, error})
-            }
-            break
+        // case 'PUT':
+        //     try {
+        //         const user = await User.updateOne({_id: UserId}, req.body)
+        //         res.status(200).json({success: true, data: user})
+        //     } catch (error) {
+        //         console.log(error)
+        //         res.status(500).json({success: false, error})
+        //     }
+        //     break
 
         case "DELETE":
             try {
