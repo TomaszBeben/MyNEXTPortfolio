@@ -2,21 +2,39 @@ import { useState, useEffect } from "react"
 import { useSession, getSession } from "next-auth/react"
 import AppHomePage from "../../components/app/AppHomePage"
 import { NextPage, NextPageContext } from "next"
+import {submitReq} from '../../components/utils/submitReq'
 
-const ProtectPageFunction: NextPage = ({props}) => {
+const ProtectPageFunction: NextPage = () => {
+  const [user, setUser] = useState()
   const [mounted, setMounted] = useState(false);
   const { data: session } = useSession()
-  useEffect(() => setMounted(true), []);
+  const [posted, setPosted] = useState<boolean>(false)
+  const name: string | undefined = session?.user?.name?.toString()
+  const email: string | undefined = session?.user?.email?.toString()
+
+  useEffect(()=>{
+    if(!posted){
+      setPosted(true)
+      submitReq(name, email)
+    }else{
+      setPosted(false)
+    }
+    setMounted(true)
+
+    const fetchData = async () => {
+      const data = await fetch(`http://localhost:3000/api/users`);
+      const res = await data.json()
+      setUser(res)
+   }
+   fetchData()
+  }, [])
+
   if (!mounted) return null;
-
-  console.log(session);
-
-
   if (session) {
     return (
       <>
         {
-          props.data.map((e)=>{
+          (user !== undefined) ? user.data.map((e)=>{
             return(
               <div key={e._id}>
                 <div>{e.name}</div>
@@ -24,19 +42,15 @@ const ProtectPageFunction: NextPage = ({props}) => {
                 <div>{e._id}</div>
               </div>
             )
-          })}
+          })
+          :<div>no data to display</div>}
       </>
     )
   }
 }
 
-export const getServerSideProps = async(context: NextPageContext) => {
+export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context)
-  const res = await fetch(`http://localhost:3000/api/users`)
-  const data = await res.json()
-  // const test = await fetch(`http://localhost:3000/api/users/${id}`)
-  // console.log(test);
-
   if (!session) {
     return {
       redirect: {
@@ -47,10 +61,7 @@ export const getServerSideProps = async(context: NextPageContext) => {
   }
 
   return {
-    props: {
-      session,
-      props: data,
-    }
+    props: {session}
   }
 }
 

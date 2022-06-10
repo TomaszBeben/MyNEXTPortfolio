@@ -27,13 +27,13 @@ const user: NextPage = ({props}) => {
 
 export default user
 
-export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/users')
-  const data = await res.json()
+// export const getServerSideProps = async () => {
+//   const res = await fetch('http://localhost:3000/api/users')
+//   const data = await res.json()
 
-  return {
-    props: {
-      props: data.data
-    }
-  }
-}
+//   return {
+//     props: {
+//       props: data.data
+//     }
+//   }
+// }

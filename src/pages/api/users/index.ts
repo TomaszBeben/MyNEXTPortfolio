@@ -9,7 +9,7 @@ export default async function handler(
 ) {
     const {method} = req
     const session = await getSession({req})
-    console.log(session?.user?.email);
+    // console.log(session?.user?.email);
     dbConnect()
 
 
