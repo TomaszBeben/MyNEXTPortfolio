@@ -2,48 +2,45 @@ import { useState, useEffect } from "react"
 import { useSession, getSession } from "next-auth/react"
 import AppHomePage from "../../components/app/AppHomePage"
 import { NextPage, NextPageContext } from "next"
-import {submitReq} from '../../components/utils/submitReq'
+import { submitReq } from '../../components/utils/submitReq'
 
 const ProtectPageFunction: NextPage = () => {
-  const [user, setUser] = useState()
   const [mounted, setMounted] = useState(false);
   const { data: session } = useSession()
-  const [posted, setPosted] = useState<boolean>(false)
+  const [posted, setPosted] = useState < boolean > (false)
   const name: string | undefined = session?.user?.name?.toString()
   const email: string | undefined = session?.user?.email?.toString()
+  const [user, setUser] = useState()
 
-  useEffect(()=>{
-    if(!posted){
+  useEffect(() => {
+    if (!posted) {
       setPosted(true)
       submitReq(name, email)
-    }else{
+    } else {
       setPosted(false)
     }
     setMounted(true)
 
     const fetchData = async () => {
-      const data = await fetch(`http://localhost:3000/api/users`);
+      const data = await fetch(`http://localhost:3000/api/users`)
       const res = await data.json()
-      setUser(res)
-   }
-   fetchData()
-  }, [])
-
+      setUser(res.data[0])
+    }
+    fetchData()
+  }, [user])
   if (!mounted) return null;
   if (session) {
     return (
       <>
         {
-          (user !== undefined) ? user.data.map((e)=>{
-            return(
-              <div key={e._id}>
-                <div>{e.name}</div>
-                <div>{e.email}</div>
-                <div>{e._id}</div>
-              </div>
-            )
-          })
-          :<div>no data to display</div>}
+          user === undefined
+          ?<div>no data!</div>
+          :<div>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+            <div>{user._id}</div>
+          </div>
+        }
       </>
     )
   }
@@ -61,7 +58,7 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 
   return {
-    props: {session}
+    props: { session }
   }
 }
 
